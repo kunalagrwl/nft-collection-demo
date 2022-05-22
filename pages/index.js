@@ -6,7 +6,6 @@ import Web3Modal from 'web3modal'
 import {ethers} from 'ethers'
 import {useState, useEffect, useRef} from 'react'
 import {NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI} from '../constants'
-import { id } from 'ethers/lib/utils'
 
 export default function Home() {
 
@@ -245,7 +244,7 @@ export default function Home() {
           <h1 className={styles.title}>Welcome to Crypto Devs</h1>      
           <RenderButton/>
         </div>
-        <img src="./0.svg" />
+        <img src="./cryptodevs/0.svg" />
       </div>
       <footer className={styles.footer}>
         Made with love by Crypto Devs
