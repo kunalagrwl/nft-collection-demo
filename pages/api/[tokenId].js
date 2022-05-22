@@ -3,7 +3,7 @@ export default function handler(req, res) {
     res.status(200).json(
         {
             "description": "NFT Collection for Crptyo Devs.", 
-            "image": `https://raw.githubusercontent.com/LearnWeb3DAO/NFT-Collection/main/my-app/public/cryptodevs/${tokenId}.svg`, 
+            "image": `https://raw.githubusercontent.com/kunalagrwl/nft-collection-demo/main/public/cryprodevs/${tokenId}.svg`, 
             "name": `Crypto Dev #${tokenId}` ,
         }
         )
