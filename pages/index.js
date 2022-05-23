@@ -28,8 +28,9 @@ export default function Home() {
 
   const onPageLoad = async () => {
     try {
-      await connectWallet()
-      if (isWalletConnected) {
+      const connected = await connectWallet()
+      if (connected) {
+        //console.log("running after connect code..")
         await getOwner()
         const presaleStarted = await checkIfPresaleStarted()
         if(presaleStarted) {
@@ -56,19 +57,21 @@ export default function Home() {
     try {
       const value = await getProviderOrSigner()
       if(typeof value !== 'undefined') {
-        console.log(value)
+        //console.log(value)
         setIsWalletConnected(true)
+        return true
       }
     }
     catch(err) {
       console.error("connectWallet", err)
+      return false
     }    
   }
 
   const getProviderOrSigner = async (needSigner = false) => {
     try {
       const provider = await Web3ModalRef.current.connect()
-      console.log(provider)
+      //console.log(provider)
       const web3Provider = new ethers.providers.Web3Provider(provider)
       const {chainId} = await web3Provider.getNetwork()
       if(chainId !== 4) {
@@ -92,6 +95,7 @@ export default function Home() {
       const nftContract = new ethers.Contract(NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI, signer)
       const owner = await nftContract.owner()
       const userAddress = await signer.getAddress()
+      //console.log("owner details",owner,userAddress, owner.toLowerCase() === userAddress.toLowerCase())
       if(owner.toLowerCase() === userAddress.toLowerCase()) {
         setIsOwner(true)
       }
@@ -193,6 +197,7 @@ export default function Home() {
   }
 
   const RenderButton = () => {
+    //console.log("isLoading",isLoading,"isWalletConnected",isWalletConnected,"isPresaleStarted",isPresaleStarted,"isOwner",isOwner,"presaleEnded",presaleEnded)
     if(isLoading) {
       return <p>Loading..</p>
     }
