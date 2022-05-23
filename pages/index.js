@@ -125,7 +125,7 @@ export default function Home() {
       const nftContract = new ethers.Contract(NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI, provider)
       const presaleEndTime = await nftContract.presaleEnded()
       const currentTimeInSeconds = Math.floor(Date.now() / 1000)
-      if(currentTimeInSeconds.gt(presaleEndTime)) {
+      if(presaleEndTime.lt(currentTimeInSeconds)) {
         setPresaleEnded(true)
       }
     }
