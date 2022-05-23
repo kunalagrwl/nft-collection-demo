@@ -242,7 +242,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Crytp Dev NFTs</title>
+        <title>Cryto Dev NFTs</title>
       </Head>
       <div className={styles.main}>
         <div>
